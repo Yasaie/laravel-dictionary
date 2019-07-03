@@ -2,9 +2,7 @@
 
 namespace Yasaie\Dictionary;
 
-use Illuminate\Support\ServiceProvider;
-
-class YasaieDictionaryProvider extends ServiceProvider
+class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
      * Register services.
@@ -23,6 +21,6 @@ class YasaieDictionaryProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadMigrationsFrom(__DIR__.'/Database/migrations');
     }
 }
