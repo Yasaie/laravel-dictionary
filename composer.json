@@ -1,7 +1,12 @@
 {
     "name": "yasaie/laravel-dictionary",
     "description": "Dictionary table for laravel",
+    "keywords": [
+        "laravel",
+        "dicitionary"
+    ],
     "type": "library",
+    "homepage": "https://github.com/Yasaie/laravel-dictionary",
     "license": "MIT",
     "authors": [
         {
@@ -14,6 +19,13 @@
     "autoload": {
         "psr-4": {
             "Yasaie\\Dictionary\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Yasaie\\Dictionary\\YasaieDictionaryProvider"
+            ]
         }
     }
 }
