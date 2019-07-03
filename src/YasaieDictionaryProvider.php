@@ -1,6 +1,6 @@
 <?php
 
-namespace Yasaie\Dicionary;
+namespace Yasaie\Dictionary;
 
 use Illuminate\Support\ServiceProvider;
 

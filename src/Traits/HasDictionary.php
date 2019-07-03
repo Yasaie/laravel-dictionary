@@ -5,14 +5,14 @@
  * @copyright   2019-06-15
  */
 
-namespace Yasaie\Dicionary;
+namespace Yasaie\Dictionary\Traits;
 
 /**
  * App\Product
  *
  * @mixin \Eloquent
  */
-trait HasDictionaryTrait
+trait HasDictionary
 {
     public function __get($key)
     {
