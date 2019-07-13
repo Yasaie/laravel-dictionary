@@ -21,6 +21,10 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/Database/migrations');
+        if (!class_exists('CreateDictionariesTable')) {
+            $this->publishes([
+                __DIR__ . '/../database/migrations/create_dictionaries_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_dictionaries_table.php'),
+            ], 'migrations');
+        }
     }
 }
