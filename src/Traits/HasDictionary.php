@@ -7,6 +7,8 @@
 
 namespace Yasaie\Dictionary\Traits;
 
+use Yasaie\Dictionary\Dictionary;
+
 /**
  * App\Product
  *
@@ -52,6 +54,6 @@ trait HasDictionary
 
     public function dictionary()
     {
-        return $this->morphMany('App\\Dictionary', 'context');
+        return $this->morphMany(Dictionary::class, 'context');
     }
 }
