@@ -19,8 +19,6 @@ class CreateDictionariesTable extends Migration
             $table->morphs('context');
             $table->string('key')->nullable();
             $table->text('value')->nullable();
-
-            $table->foreign('language_id')->references('id')->on('languages');
         });
     }
 
