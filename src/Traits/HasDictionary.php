@@ -34,7 +34,7 @@ trait HasDictionary
         return $this->getAttribute($key);
     }
 
-    protected function getTranslate($name, $lang)
+    public function getTranslate($name, $lang)
     {
         $req = [
             $lang,
