@@ -16,11 +16,27 @@ use Yasaie\Dictionary\Dictionary;
  */
 trait HasDictionary
 {
+    /**
+     * @package __get
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @param $key
+     *
+     * @return mixed
+     */
     public function __get($key)
     {
         return $this->locale($key);
     }
 
+    /**
+     * @package locale
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @param $key
+     *
+     * @return mixed
+     */
     public function locale($key)
     {
         $locales = property_exists($this, 'dictionary')
@@ -34,6 +50,15 @@ trait HasDictionary
         return $this->getAttribute($key);
     }
 
+    /**
+     * @package getTranslate
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @param $name
+     * @param $lang
+     *
+     * @return mixed
+     */
     public function getTranslate($name, $lang)
     {
         $req = [
@@ -52,6 +77,12 @@ trait HasDictionary
         });
     }
 
+    /**
+     * @package dictionary
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function dictionary()
     {
         return $this->morphMany(Dictionary::class, 'context');
