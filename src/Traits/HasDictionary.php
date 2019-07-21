@@ -51,6 +51,35 @@ trait HasDictionary
     }
 
     /**
+     * @package getLocaleKey
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @param $name
+     * @param $lang
+     * @param bool $key
+     *
+     * @return array|string
+     */
+    protected function getLocaleKey($name, $lang, &$key = false)
+    {
+        $req = [
+            $lang,
+            $this->table,
+            $this->id,
+            $name
+        ];
+
+        $the_key = implode('.', $req);
+
+        if ($key) {
+            $key = $the_key;
+            return $req;
+        } else {
+            return $the_key;
+        }
+    }
+
+    /**
      * @package getTranslate
      * @author  Payam Yasaie <payam@yasaie.ir>
      *
@@ -61,13 +90,8 @@ trait HasDictionary
      */
     public function getTranslate($name, $lang)
     {
-        $req = [
-            $lang,
-            $this->table,
-            $this->id,
-            $name
-        ];
-        $key = implode('.', $req);
+        $key = true;
+        $req = $this->getLocaleKey($name, $lang, $key);
 
         return \Cache::rememberForever($key, function() use ($req) {
             return $this->dictionary()->where([
@@ -86,5 +110,47 @@ trait HasDictionary
     public function dictionary()
     {
         return $this->morphMany(Dictionary::class, 'context');
+    }
+
+    /**
+     * @package clearLocalCache
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
+    public function clearLocalCache()
+    {
+        $locales = property_exists($this, 'locales')
+            ? $this->locales : [];
+
+        foreach ($locales as $locale) {
+            foreach (\Config::get('global.langs') as $lang) {
+                \Cache::delete($this->getLocaleKey($locale, $lang->getId()));
+            }
+        }
+    }
+
+    /**
+     * @package deleteDictionary
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @return bool|mixed
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
+    protected function deleteDictionary()
+    {
+        $parent = parent::delete();
+
+        if ($parent) {
+            $this->clearLocalCache();
+            return $this->dictionary()->delete();
+        } else {
+            return false;
+        }
+    }
+
+    public function delete()
+    {
+        return $this->deleteDictionary();
     }
 }
