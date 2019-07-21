@@ -12,7 +12,10 @@ use Illuminate\Database\Eloquent\Model;
 class Dictionary extends Model
 {
     public $timestamps = false;
+
     protected $appends = ['full_path'];
+
+    protected $guarded = [];
 
     public function context()
     {
