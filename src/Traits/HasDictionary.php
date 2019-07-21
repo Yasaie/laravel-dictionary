@@ -170,11 +170,11 @@ trait HasDictionary
      */
     public function createLocale($key, $values)
     {
-        foreach ($values as $lang => $title) {
-            if ($title) {
+        foreach ($values as $lang => $value) {
+            if ($value) {
                 $this->dictionary()->create([
                     'key' => $key,
-                    'value' => $title,
+                    'value' => $value,
                     'language_id' => $lang
                 ]);
             }
