@@ -39,7 +39,7 @@ trait HasDictionary
      */
     public function locale($key)
     {
-        $locales = property_exists($this, 'dictionary')
+        $locales = property_exists($this, 'locales')
             ? $this->locales : [];
 
         if (in_array($key, $locales)) {
