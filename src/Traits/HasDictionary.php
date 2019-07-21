@@ -149,8 +149,35 @@ trait HasDictionary
         }
     }
 
+    /**
+     * @package delete
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @return bool|mixed
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
     public function delete()
     {
         return $this->deleteDictionary();
+    }
+
+    /**
+     * @package createLocale
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @param $key
+     * @param $values
+     */
+    public function createLocale($key, $values)
+    {
+        foreach ($values as $lang => $title) {
+            if ($title) {
+                $this->dictionary()->create([
+                    'key' => $key,
+                    'value' => $title,
+                    'language_id' => $lang
+                ]);
+            }
+        }
     }
 }

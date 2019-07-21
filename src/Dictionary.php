@@ -39,16 +39,4 @@ class Dictionary extends Model
         return "{$this->context_type}{$this->context_id}";
     }
 
-    public function createLocale($key, $values)
-    {
-        foreach ($values as $lang => $title) {
-            if ($title) {
-                $this->create([
-                    'key' => $key,
-                    'value' => $title,
-                    'language_id' => $lang
-                ]);
-            }
-        }
-    }
 }
