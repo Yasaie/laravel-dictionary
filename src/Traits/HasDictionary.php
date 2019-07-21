@@ -23,10 +23,10 @@ trait HasDictionary
 
     public function locale($key)
     {
-        $dictionary = property_exists($this, 'dictionary')
-            ? $this->dictionary : [];
+        $locales = property_exists($this, 'dictionary')
+            ? $this->locales : [];
 
-        if (in_array($key, $dictionary)) {
+        if (in_array($key, $locales)) {
             return $this->getTranslate($key, \Config::get('app.locale'))
                 ?: $this->getTranslate($key, \Config::get('app.fallback_locale'));
         }
