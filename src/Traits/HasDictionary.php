@@ -202,6 +202,6 @@ trait HasDictionary
                 ]);
             }
         }
-        $this->deleteDictionary();
+        $this->clearLocalCache();
     }
 }
