@@ -180,4 +180,25 @@ trait HasDictionary
             }
         }
     }
+
+    /**
+     * @package updateLocale
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     *
+     * @param $key
+     * @param $values
+     */
+    public function updateLocale($key, $values)
+    {
+        foreach ($values as $lang => $value) {
+            if ($value) {
+                $this->dictionary()->updateOrCreate([
+                    'key' => $key,
+                    'language_id' => $lang
+                ], [
+                    'value' => $value,
+                ]);
+            }
+        }
+    }
 }
