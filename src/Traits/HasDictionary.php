@@ -187,6 +187,8 @@ trait HasDictionary
      *
      * @param $key
      * @param $values
+     *
+     * @throws \Psr\SimpleCache\InvalidArgumentException
      */
     public function updateLocale($key, $values)
     {
@@ -200,5 +202,6 @@ trait HasDictionary
                 ]);
             }
         }
+        $this->deleteDictionary();
     }
 }
