@@ -16,6 +16,18 @@ use Yasaie\Dictionary\Dictionary;
  */
 trait HasDictionary
 {
+
+    /**
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     * @since   2019-08-18
+     *
+     * @return mixed
+     */
+    public function getLocales()
+    {
+        return $this->locales;
+    }
+    
     /**
      * @package __get
      * @author  Payam Yasaie <payam@yasaie.ir>
