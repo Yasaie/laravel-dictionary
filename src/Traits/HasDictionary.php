@@ -27,7 +27,7 @@ trait HasDictionary
     {
         return $this->locales;
     }
-    
+
     /**
      * @package __get
      * @author  Payam Yasaie <payam@yasaie.ir>
