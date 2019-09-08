@@ -2,6 +2,8 @@
 
 namespace Yasaie\Dictionary;
 
+use Yasaie\Dictionary\Commands\RemoveDuplicateDictionaries;
+
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {
     /**
@@ -26,5 +28,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
                 __DIR__ . '/../database/migrations/create_dictionaries_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_dictionaries_table.php'),
             ], 'migrations');
         }
+
+        $this->commands(RemoveDuplicateDictionaries::class);
     }
 }
