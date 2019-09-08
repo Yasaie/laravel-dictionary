@@ -2,6 +2,7 @@
 
 namespace Yasaie\Dictionary;
 
+use Illuminate\Console\Scheduling\Schedule;
 use Yasaie\Dictionary\Commands\RemoveDuplicateDictionaries;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
@@ -30,5 +31,11 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         }
 
         $this->commands(RemoveDuplicateDictionaries::class);
+
+        $this->app->booted(function () {
+            $schedule = $this->app->make(Schedule::class);
+            $schedule->command('dictionary:remove-duplicate')
+                ->daily();
+        });
     }
 }
