@@ -35,7 +35,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->app->booted(function () {
             $schedule = $this->app->make(Schedule::class);
             $schedule->command('dictionary:remove-duplicate')
-                ->daily();
+                ->hourly();
         });
     }
 }
