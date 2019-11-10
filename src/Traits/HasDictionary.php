@@ -18,6 +18,12 @@ trait HasDictionary
 {
 
     /**
+     * @var array $locales
+     * names of available locales
+     */
+    protected $locales;
+
+    /**
      * @author  Payam Yasaie <payam@yasaie.ir>
      * @since   2019-08-18
      *
