@@ -64,6 +64,25 @@ trait HasDictionary
     }
 
     /**
+     * @author  Payam Yasaie <payam@yasaie.ir>
+     * @since   2019-12-08
+     *
+     * @param string $key
+     *
+     * @return array
+     */
+    public function localArray($key)
+    {
+        $output = [];
+        foreach (\Config::get('global.langs') as $lang) {
+            $lang_key = $lang->getId();
+            $output[$lang_key] = $this->getTranslate($key, $lang_key);
+        }
+
+        return $output;
+    }
+
+    /**
      * @package getLocaleKey
      * @author  Payam Yasaie <payam@yasaie.ir>
      *
